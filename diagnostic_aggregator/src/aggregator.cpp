@@ -221,13 +221,11 @@ void Aggregator::publishData()
     {
       diag_toplevel_state.level = processed[i]->level;
     }
-    if(processed[i]->level > diagnostic_msgs::DiagnosticStatus::OK)
-    {
-        diagnostic_msgs::KeyValue kv;
-        kv.key = processed[i]->name;
-        kv.value = valToMsg( processed[i]->level);
-        diag_toplevel_state.values.push_back(kv);
-    }
+
+    diagnostic_msgs::KeyValue kv;
+    kv.key = processed[i]->name;
+    kv.value = valToMsg( processed[i]->level);
+    diag_toplevel_state.values.push_back(kv);
 
     if (processed[i]->level < min_level)
       min_level = processed[i]->level;
@@ -242,13 +240,11 @@ void Aggregator::publishData()
     {
       diag_toplevel_state.level = processed_other[i]->level;
     }
-    if(processed_other[i]->level > diagnostic_msgs::DiagnosticStatus::OK)
-    {
-        diagnostic_msgs::KeyValue kv;
-        kv.key = processed_other[i]->name;
-        kv.value = valToMsg( processed_other[i]->level);
-        diag_toplevel_state.values.push_back(kv);
-    }
+
+    diagnostic_msgs::KeyValue kv;
+    kv.key = processed_other[i]->name;
+    kv.value = valToMsg( processed_other[i]->level);
+    diag_toplevel_state.values.push_back(kv);
 
     if (processed_other[i]->level < min_level)
       min_level = processed_other[i]->level;
